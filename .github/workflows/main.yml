@@ -18,3 +18,7 @@ jobs:
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
         run: vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        run: |
+          url="$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})"
+          vercel alias --token=${{ secrets.VERCEL_TOKEN }} set "$url" main-apps.vercel.app --scope vikhyath-devs-projects
